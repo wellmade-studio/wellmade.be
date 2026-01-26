@@ -1,0 +1,63 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'Wellmade - Products that work. Teams that deliver.', description = 'We build products that matter. Production-ready from day one. Built to evolve.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Josefin+Sans:wght@100;300;400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body class="min-h-screen bg-white text-body antialiased font-sans text-lg">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Section background patterns for visual separation */
+  .section-light {
+    @apply bg-white;
+  }
+
+  .section-alt {
+    @apply bg-light/30;
+  }
+
+  .section-primary {
+    @apply bg-primary text-white;
+  }
+
+  .section-accent {
+    @apply bg-accent/10;
+  }
+</style>

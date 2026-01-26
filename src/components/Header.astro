@@ -1,0 +1,131 @@
+---
+import Logo from './Logo.astro';
+
+const navLinks = [
+  { href: '/services', label: 'Services' },
+  { href: '/manifesto', label: 'Manifesto' },
+  { href: '/approach', label: 'Approach' },
+  { href: '/working-with-us', label: 'Working With Us' },
+];
+---
+
+<div id="header-spacer" class="h-[80px] md:h-[120px] transition-all duration-300"></div>
+
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300" data-scrolled="false">
+  <nav class="max-w-6xl mx-auto px-6 flex items-center justify-between py-4 md:py-6 transition-all duration-300">
+    <a href="/" class="shrink-0">
+      <Logo class="w-[140px] md:w-[180px] h-auto transition-all duration-300" id="header-logo" />
+    </a>
+
+    <div class="hidden lg:flex items-center gap-8">
+      {navLinks.map((link) => (
+        <a href={link.href} class="text-primary font-medium hover:text-primary/70 transition-colors text-sm uppercase tracking-wide">
+          {link.label}
+        </a>
+      ))}
+      <a href="/contact" class="bg-primary text-white px-6 py-2.5 rounded-full font-semibold hover:bg-primary/90 transition-colors text-sm">
+        Let's talk
+      </a>
+    </div>
+
+    <button id="mobile-menu-btn" class="lg:hidden text-primary p-2" aria-label="Toggle menu" aria-expanded="false">
+      <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-light/50">
+    <div class="px-6 py-6 flex flex-col gap-1 max-w-6xl mx-auto">
+      {navLinks.map((link) => (
+        <a href={link.href} class="text-primary font-medium py-3 text-sm uppercase tracking-wide border-b border-light/30 last:border-0">
+          {link.label}
+        </a>
+      ))}
+      <a href="/contact" class="bg-primary text-white px-6 py-3 rounded-full font-semibold text-center mt-4 text-sm">
+        Let's talk
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('main-header');
+  const headerSpacer = document.getElementById('header-spacer');
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  let lastScroll = 0;
+  const scrollThreshold = 50;
+
+  function updateHeader() {
+    const currentScroll = window.scrollY;
+    const isScrolled = currentScroll > scrollThreshold;
+
+    if (header && headerSpacer) {
+      if (isScrolled) {
+        header.classList.add('shadow-nav', 'py-0');
+        header.dataset.scrolled = 'true';
+        headerSpacer.style.height = '60px';
+
+        const nav = header.querySelector('nav');
+        if (nav) {
+          nav.classList.remove('py-4', 'md:py-6');
+          nav.classList.add('py-2', 'md:py-3');
+        }
+
+        const logo = document.getElementById('header-logo');
+        if (logo) {
+          logo.classList.remove('w-[140px]', 'md:w-[180px]');
+          logo.classList.add('w-[100px]', 'md:w-[130px]');
+        }
+      } else {
+        header.classList.remove('shadow-nav');
+        header.dataset.scrolled = 'false';
+        headerSpacer.style.height = '';
+
+        const nav = header.querySelector('nav');
+        if (nav) {
+          nav.classList.add('py-4', 'md:py-6');
+          nav.classList.remove('py-2', 'md:py-3');
+        }
+
+        const logo = document.getElementById('header-logo');
+        if (logo) {
+          logo.classList.add('w-[140px]', 'md:w-[180px]');
+          logo.classList.remove('w-[100px]', 'md:w-[130px]');
+        }
+      }
+    }
+
+    lastScroll = currentScroll;
+  }
+
+  function toggleMobileMenu() {
+    const isOpen = mobileMenu?.classList.toggle('hidden') === false;
+    menuBtn?.setAttribute('aria-expanded', String(isOpen));
+    menuIcon?.classList.toggle('hidden', isOpen);
+    closeIcon?.classList.toggle('hidden', !isOpen);
+  }
+
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  menuBtn?.addEventListener('click', toggleMobileMenu);
+
+  // Close mobile menu when clicking a link
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      menuBtn?.setAttribute('aria-expanded', 'false');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    });
+  });
+
+  // Initialize on load
+  updateHeader();
+</script>

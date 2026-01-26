@@ -1,0 +1,25 @@
+{
+  "name": "Wellmade Website Dev Container",
+  "image": "ghcr.io/totophe/dc-toolbelt:node24-astro",
+  "workspaceFolder": "/workspaces/wellmade.be",
+  "mounts": [
+    "source=dc-toolbelt-gh-config,target=/home/node/.config/gh,type=volume",
+    "source=claude-config,target=/home/node/.claude,type=volume"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Anthropic.claude-code",
+        "astro-build.astro-vscode",
+        "github.copilot",
+        "github.copilot-chat",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "astro-build.astro-vscode",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  },
+  "forwardPorts": [4321],
+  "postCreateCommand": "sudo chown -R node:node /home/node/.config /home/node/.claude",
+}

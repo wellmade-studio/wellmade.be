@@ -1,0 +1,13 @@
+---
+interface Props {
+  text?: string;
+}
+
+const { text = "Lean builders. We deliver." } = Astro.props;
+---
+
+<section class="section-accent py-12">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <p class="text-primary font-cursive text-3xl">{text}</p>
+  </div>
+</section>
