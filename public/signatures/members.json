@@ -1,0 +1,15 @@
+[
+  {
+    "id": "jcc",
+    "name": "Jean-Christophe Cuvelier",
+    "title": "Managing Director",
+    "email": "jcc@wellmade.be",
+    "phone": "+32 475 50 99 55"
+  },
+  {
+    "id": "marc",
+    "name": "Marc Lewis",
+    "title": "AI Product Manager • Product & Delivery Lead",
+    "email": "marc@wellmade.be"
+  }
+]
