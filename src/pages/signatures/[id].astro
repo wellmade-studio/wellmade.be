@@ -1,0 +1,53 @@
+---
+import signatures from '../../data/signatures.json';
+
+export function getStaticPaths() {
+  return signatures.map((member) => ({
+    params: { id: member.id },
+    props: { member },
+  }));
+}
+
+const { member } = Astro.props;
+const phoneHref = member.phone ? `tel:${member.phone.replace(/\s/g, '')}` : null;
+---
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Email Signature - {member.name}</title>
+</head>
+<body>
+  <table cellpadding="0" cellspacing="0" border="0" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.4; color: #47446B;">
+    <tr>
+      <td style="padding-right: 16px; vertical-align: top;">
+        <img src="https://wellmade.be/signatures/logo.png" alt="Wellmade" width="60" height="60" style="display: block;">
+      </td>
+      <td style="vertical-align: top;">
+        <table cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td style="font-weight: 600; font-size: 15px; color: #47446B; padding-bottom: 2px;">
+              {member.name}
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size: 13px; color: #666; padding-bottom: 8px;">
+              {member.title}
+            </td>
+          </tr>
+          <tr>
+            <td style="font-size: 13px; color: #47446B;" set:html={
+              `<a href="mailto:${member.email}" style="color: #47446B; text-decoration: none;">${member.email}</a>` +
+              (phoneHref
+                ? `<span style="color: #ccc; padding: 0 6px;">&bull;</span><a href="${phoneHref}" style="color: #47446B; text-decoration: none;">${member.phone}</a>`
+                : '') +
+              `<span style="color: #ccc; padding: 0 6px;">&bull;</span><a href="https://wellmade.be" style="color: #B1E5F2; text-decoration: none;">wellmade.be</a>`
+            } />
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

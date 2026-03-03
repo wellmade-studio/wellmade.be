@@ -1,3 +1,7 @@
+---
+import signatures from '../../data/signatures.json';
+---
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,17 +71,13 @@
   <h1>Email Signatures</h1>
   <p>Select a team member to view their email signature.</p>
 
-  <div class="member">
-    <h2>Jean-Christophe Cuvelier</h2>
-    <div class="title">Managing Director</div>
-    <a href="jcc.html">View Signature</a>
-  </div>
-
-  <div class="member">
-    <h2>Marc Lewis</h2>
-    <div class="title">AI Product Manager • Product & Delivery Lead</div>
-    <a href="marc.html">View Signature</a>
-  </div>
+  {signatures.map((member) => (
+    <div class="member">
+      <h2>{member.name}</h2>
+      <div class="title">{member.title}</div>
+      <a href={`/signatures/${member.id}/`}>View Signature</a>
+    </div>
+  ))}
 
   <div class="instructions">
     <h3>How to use</h3>
