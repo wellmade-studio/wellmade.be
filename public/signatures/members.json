@@ -7,6 +7,18 @@
     "phone": "+32 475 50 99 55"
   },
   {
+    "id": "alexis",
+    "name": "Alexis Safarikas",
+    "title": "Business Development Director",
+    "email": "alexis@wellmade.be"
+  },
+  {
+    "id": "tomas",
+    "name": "Tomas Staelens",
+    "title": "Business Development Partner",
+    "email": "tomas@wellmade.be"
+  },
+  {
     "id": "marc",
     "name": "Marc Lewis",
     "title": "AI Product Manager • Product & Delivery Lead",
