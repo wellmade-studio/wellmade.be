@@ -16,6 +16,7 @@ const footerLinks = {
     { href: '/approach', label: 'Approach' },
     { href: '/working-with-us', label: 'Working With Us' },
     { href: '/partnerships', label: 'Partnerships' },
+    { href: 'https://wellmadelabs.com', label: 'Labs', external: true },
   ],
 };
 ---
@@ -55,8 +56,9 @@ const footerLinks = {
         <ul class="space-y-3">
           {footerLinks.company.map((link) => (
             <li>
-              <a href={link.href} class="text-white/70 hover:text-white transition-colors text-sm">
+              <a href={link.href} class="text-white/70 hover:text-white transition-colors text-sm" {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
                 {link.label}
+                {link.external && <span class="text-[0.6rem] ml-1">↗</span>}
               </a>
             </li>
           ))}
