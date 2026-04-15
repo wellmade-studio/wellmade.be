@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ServiceIcon from '../components/ServiceIcon.astro';
 ---
 
 <Layout>
   <!-- Hero Section -->
-  <section class="section-light py-20 md:py-32">
+  <section class="section-light has-blobs has-dots py-20 md:py-32">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-title leading-tight mb-6">
         Products that work.<br />
@@ -45,16 +46,19 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
         <a href="/services/product-development" class="group block p-6 bg-white rounded-2xl shadow-card hover:shadow-lg transition-shadow">
+          <ServiceIcon name="product" class="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
           <h3 class="text-xl font-bold text-title mb-3 group-hover:text-primary transition-colors">Product Development</h3>
           <p class="text-body">From idea to production. MVPs that aren't throwaway demos.</p>
         </a>
 
         <a href="/services/ai-integration" class="group block p-6 bg-white rounded-2xl shadow-card hover:shadow-lg transition-shadow">
+          <ServiceIcon name="ai" class="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
           <h3 class="text-xl font-bold text-title mb-3 group-hover:text-primary transition-colors">AI Integration</h3>
           <p class="text-body">Intelligence that works. Not buzzwords.</p>
         </a>
 
         <a href="/services/devops-infrastructure" class="group block p-6 bg-white rounded-2xl shadow-card hover:shadow-lg transition-shadow">
+          <ServiceIcon name="devops" class="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
           <h3 class="text-xl font-bold text-title mb-3 group-hover:text-primary transition-colors">DevOps & Infrastructure</h3>
           <p class="text-body">Your cloud. Your control. Fully managed.</p>
         </a>
@@ -62,11 +66,13 @@ import Layout from '../layouts/Layout.astro';
 
       <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 lg:max-w-[66%] lg:mx-auto mb-12">
         <a href="/services/discovery-strategy" class="group block p-6 bg-white rounded-2xl shadow-card hover:shadow-lg transition-shadow">
+          <ServiceIcon name="discovery" class="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
           <h3 class="text-xl font-bold text-title mb-3 group-hover:text-primary transition-colors">Discovery & Strategy</h3>
           <p class="text-body">Not sure what to build? Let's find out - by building.</p>
         </a>
 
         <a href="/services/rescue-refactor" class="group block p-6 bg-white rounded-2xl shadow-card hover:shadow-lg transition-shadow">
+          <ServiceIcon name="rescue" class="w-10 h-10 text-primary mb-4 group-hover:scale-110 transition-transform" />
           <h3 class="text-xl font-bold text-title mb-3 group-hover:text-primary transition-colors">Rescue & Refactor</h3>
           <p class="text-body">Stuck? We unstick things.</p>
         </a>
@@ -82,7 +88,7 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- Your Money Builds Product Section -->
-  <section class="section-primary py-20 md:py-28">
+  <section class="section-primary has-blobs py-20 md:py-28">
     <div class="max-w-4xl mx-auto px-6">
       <h2 class="text-3xl md:text-4xl font-bold mb-8">Your money builds product, not org charts.</h2>
       <p class="text-lg md:text-xl text-white/80 leading-relaxed mb-10">

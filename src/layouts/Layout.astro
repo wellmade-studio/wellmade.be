@@ -47,6 +47,23 @@ const { title = 'Wellmade - Products that work. Teams that deliver.', descriptio
   }
 
   /* Section background patterns for visual separation */
+  .section-light,
+  .section-alt,
+  .section-primary,
+  .section-accent {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Ensure direct content children sit above decorative backgrounds */
+  .section-light > *,
+  .section-alt > *,
+  .section-primary > *,
+  .section-accent > * {
+    position: relative;
+    z-index: 1;
+  }
+
   .section-light {
     @apply bg-white;
   }
@@ -57,9 +74,56 @@ const { title = 'Wellmade - Products that work. Teams that deliver.', descriptio
 
   .section-primary {
     @apply bg-primary text-white;
+    background-image: radial-gradient(circle, rgba(177, 229, 242, 0.18) 1.5px, transparent 1.5px);
+    background-size: 36px 36px;
+    background-position: 0 0;
   }
 
   .section-accent {
     @apply bg-accent/10;
+  }
+
+  /* Opt-in dot grid for light sections */
+  .section-light.has-dots,
+  .section-alt.has-dots,
+  .section-accent.has-dots {
+    background-image: radial-gradient(circle, rgba(71, 68, 107, 0.14) 1.25px, transparent 1.25px);
+    background-size: 28px 28px;
+    background-position: 0 0;
+  }
+
+  /* Decorative crisp SVG blobs - add .has-blobs to a section to enable */
+  .has-blobs::before,
+  .has-blobs::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .has-blobs::before {
+    top: -80px;
+    right: -120px;
+    width: 520px;
+    height: 520px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'><path fill='%23B1E5F2' fill-opacity='0.35' d='M421,301Q387,352,338,383Q289,414,232,411Q175,408,128,374Q81,340,71,282Q61,224,85,171Q109,118,162,92Q215,66,274,73Q333,80,381,114Q429,148,441,199Q453,250,421,301Z'/></svg>");
+  }
+
+  .has-blobs::after {
+    bottom: -160px;
+    left: -140px;
+    width: 460px;
+    height: 460px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'><path fill='%23E8E9F3' fill-opacity='0.7' d='M437,295Q409,340,371,375Q333,410,280,418Q227,426,174,402Q121,378,90,329Q59,280,66,224Q73,168,112,128Q151,88,207,74Q263,60,316,84Q369,108,406,148Q443,188,448,219Q453,250,437,295Z'/></svg>");
+  }
+
+  .section-primary.has-blobs::before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'><path fill='%23B1E5F2' fill-opacity='0.12' d='M421,301Q387,352,338,383Q289,414,232,411Q175,408,128,374Q81,340,71,282Q61,224,85,171Q109,118,162,92Q215,66,274,73Q333,80,381,114Q429,148,441,199Q453,250,421,301Z'/></svg>");
+  }
+
+  .section-primary.has-blobs::after {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 500'><path fill='%23B1E5F2' fill-opacity='0.08' d='M437,295Q409,340,371,375Q333,410,280,418Q227,426,174,402Q121,378,90,329Q59,280,66,224Q73,168,112,128Q151,88,207,74Q263,60,316,84Q369,108,406,148Q443,188,448,219Q453,250,437,295Z'/></svg>");
   }
 </style>
