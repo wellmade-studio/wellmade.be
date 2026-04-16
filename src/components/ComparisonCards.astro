@@ -1,0 +1,49 @@
+---
+interface Option {
+  title: string;
+  tagline?: string;
+  bestFor?: string;
+  attributes: string[];
+  highlighted?: boolean;
+}
+
+interface Props {
+  options: Option[];
+  class?: string;
+}
+
+const { options, class: className = '' } = Astro.props;
+---
+
+<div class:list={['grid gap-6 md:gap-8', options.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3', className]}>
+  {options.map((option) => (
+    <div class:list={[
+      'rounded-2xl p-8 shadow-card transition-all',
+      option.highlighted ? 'bg-primary text-white' : 'bg-white',
+    ]}>
+      <h3 class:list={['text-xl md:text-2xl font-bold mb-2', option.highlighted ? 'text-white' : 'text-title']}>
+        {option.title}
+      </h3>
+      {option.tagline && (
+        <p class:list={['text-base mb-4', option.highlighted ? 'text-accent' : 'text-primary font-medium']}>
+          {option.tagline}
+        </p>
+      )}
+      {option.bestFor && (
+        <p class:list={['text-sm uppercase tracking-wider mb-4 pb-4 border-b', option.highlighted ? 'border-white/20 text-white/70' : 'border-light text-body/70']}>
+          Best for: <span class="normal-case tracking-normal">{option.bestFor}</span>
+        </p>
+      )}
+      <ul class="space-y-3">
+        {option.attributes.map((attr) => (
+          <li class="flex items-start gap-3">
+            <svg class:list={['w-5 h-5 mt-0.5 flex-shrink-0', option.highlighted ? 'text-accent' : 'text-primary']} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class:list={[option.highlighted ? 'text-white/90' : 'text-body']}>{attr}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</div>

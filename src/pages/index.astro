@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ServiceIcon from '../components/ServiceIcon.astro';
+import PullQuote from '../components/PullQuote.astro';
 ---
 
 <Layout>
@@ -27,9 +28,9 @@ import ServiceIcon from '../components/ServiceIcon.astro';
       <p class="text-lg md:text-xl text-body leading-relaxed mb-8">
         You've been here before. The endless meetings. The layers of managers. The demos that looked great but never became real products.
       </p>
-      <p class="text-lg md:text-xl text-body leading-relaxed mb-8">
-        We exist because we've been on your side of that table. And we got tired of it too.
-      </p>
+
+      <PullQuote cursive={true}>We've been on your side of that table. And we got tired of it too.</PullQuote>
+
       <a href="/manifesto" class="inline-flex items-center text-primary font-semibold hover:text-primary/70 transition-colors group">
         Read our manifesto
         <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

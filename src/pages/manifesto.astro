@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Tagline from '../components/Tagline.astro';
+import PullQuote from '../components/PullQuote.astro';
 ---
 
 <Layout title="Manifesto - Wellmade" description="We build products that matter, built by people who care, for people who deserve better.">
@@ -42,7 +43,8 @@ import Tagline from '../components/Tagline.astro';
         <p>We don't build to impress committees.</p>
         <p>We don't build what's asked if what's asked doesn't make sense.</p>
       </div>
-      <p class="text-2xl md:text-3xl font-bold text-primary">We build products that matter.</p>
+
+      <PullQuote cursive={true}>We build products that matter.</PullQuote>
     </div>
   </section>
 
@@ -90,6 +92,32 @@ import Tagline from '../components/Tagline.astro';
 
   <!-- Our Compass -->
   <section class="section-primary py-20 md:py-28">
+    {/* Decorative compass */}
+    <svg class="!absolute right-6 md:right-[10%] top-1/2 -translate-y-1/2 w-48 h-48 md:w-72 md:h-72 opacity-[0.07] pointer-events-none z-0" viewBox="0 0 200 200" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="100" cy="100" r="90" stroke-width="2" stroke="#B1E5F2" />
+      <circle cx="100" cy="100" r="70" stroke-width="1" stroke="#B1E5F2" />
+      <circle cx="100" cy="100" r="4" fill="#B1E5F2" />
+      {/* Cardinal marks */}
+      <line x1="100" y1="10" x2="100" y2="30" stroke="#B1E5F2" stroke-width="2" />
+      <line x1="100" y1="170" x2="100" y2="190" stroke="#B1E5F2" stroke-width="2" />
+      <line x1="10" y1="100" x2="30" y2="100" stroke="#B1E5F2" stroke-width="2" />
+      <line x1="170" y1="100" x2="190" y2="100" stroke="#B1E5F2" stroke-width="2" />
+      {/* N/S/E/W */}
+      <text x="100" y="48" fill="#B1E5F2" font-size="14" font-weight="bold" text-anchor="middle">N</text>
+      <text x="100" y="162" fill="#B1E5F2" font-size="12" text-anchor="middle">S</text>
+      <text x="155" y="104" fill="#B1E5F2" font-size="12" text-anchor="middle">E</text>
+      <text x="45" y="104" fill="#B1E5F2" font-size="12" text-anchor="middle">W</text>
+      {/* Needle */}
+      <polygon points="100,25 94,100 106,100" fill="#B1E5F2" opacity="0.5" />
+      <polygon points="100,175 94,100 106,100" fill="#B1E5F2" opacity="0.2" />
+      {/* Tick marks */}
+      <line x1="136" y1="20" x2="132" y2="27" stroke="#B1E5F2" stroke-width="1" />
+      <line x1="164" y1="44" x2="158" y2="49" stroke="#B1E5F2" stroke-width="1" />
+      <line x1="180" y1="76" x2="173" y2="78" stroke="#B1E5F2" stroke-width="1" />
+      <line x1="64" y1="20" x2="68" y2="27" stroke="#B1E5F2" stroke-width="1" />
+      <line x1="36" y1="44" x2="42" y2="49" stroke="#B1E5F2" stroke-width="1" />
+      <line x1="20" y1="76" x2="27" y2="78" stroke="#B1E5F2" stroke-width="1" />
+    </svg>
     <div class="max-w-3xl mx-auto px-6">
       <h2 class="text-3xl md:text-4xl font-bold mb-8">Our compass.</h2>
       <p class="text-lg md:text-xl text-white/80 leading-relaxed mb-6">
@@ -114,9 +142,7 @@ import Tagline from '../components/Tagline.astro';
         <p>Not on integrity.</p>
         <p>Not on doing the right thing when the easier thing is right there.</p>
       </div>
-      <p class="text-lg md:text-xl text-title font-medium">
-        We'd rather build less and build it right than ship more and regret it.
-      </p>
+      <PullQuote>We'd rather build less and build it right than ship more and regret it.</PullQuote>
     </div>
   </section>
 
@@ -130,9 +156,7 @@ import Tagline from '../components/Tagline.astro';
       <p class="text-lg md:text-xl text-body leading-relaxed mb-6">
         Every product. Every feature. Every line.
       </p>
-      <p class="text-lg md:text-xl text-title font-medium">
-        If we can't stand behind it, we don't ship it.
-      </p>
+      <PullQuote accent={true}>If we can't stand behind it, we don't ship it.</PullQuote>
     </div>
   </section>
 

@@ -1,0 +1,40 @@
+---
+const services = [
+  { title: 'Product Development', href: '/services/product-development' },
+  { title: 'AI Integration', href: '/services/ai-integration' },
+  { title: 'DevOps & Infrastructure', href: '/services/devops-infrastructure' },
+  { title: 'Discovery & Strategy', href: '/services/discovery-strategy' },
+  { title: 'Rescue & Refactor', href: '/services/rescue-refactor' },
+];
+
+interface Props {
+  current: string;
+}
+
+const { current } = Astro.props;
+const idx = services.findIndex(s => s.href === current);
+const prev = idx > 0 ? services[idx - 1] : services[services.length - 1];
+const next = idx < services.length - 1 ? services[idx + 1] : services[0];
+---
+
+<nav class="border-t border-light py-8 md:py-12" aria-label="Service navigation">
+  <div class="max-w-4xl mx-auto px-6 flex items-center justify-between gap-4">
+    <a href={prev.href} class="group flex items-center gap-2 text-primary font-semibold hover:text-primary/70 transition-colors">
+      <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+      <span class="hidden sm:inline">{prev.title}</span>
+      <span class="sm:hidden">Previous</span>
+    </a>
+
+    <a href="/services" class="text-body text-sm hover:text-primary transition-colors">All services</a>
+
+    <a href={next.href} class="group flex items-center gap-2 text-primary font-semibold hover:text-primary/70 transition-colors">
+      <span class="hidden sm:inline">{next.title}</span>
+      <span class="sm:hidden">Next</span>
+      <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </a>
+  </div>
+</nav>

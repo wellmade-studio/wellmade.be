@@ -1,0 +1,39 @@
+---
+interface Props {
+  oldLabel?: string;
+  newLabel?: string;
+  oldText: string;
+  newText: string;
+  class?: string;
+}
+
+const {
+  oldLabel = 'The old way',
+  newLabel = 'Our way',
+  oldText,
+  newText,
+  class: className = '',
+} = Astro.props;
+---
+
+<div class:list={['grid md:grid-cols-2 gap-6 my-10', className]}>
+  <div class="bg-light/40 rounded-2xl p-6 md:p-8 relative">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-body/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+      <span class="text-sm uppercase tracking-wider text-body/60 font-semibold">{oldLabel}</span>
+    </div>
+    <p class="text-lg text-body leading-relaxed line-through decoration-body/30">{oldText}</p>
+  </div>
+
+  <div class="bg-accent/20 rounded-2xl p-6 md:p-8 relative border-2 border-accent">
+    <div class="flex items-center gap-2 mb-4">
+      <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+      </svg>
+      <span class="text-sm uppercase tracking-wider text-primary font-semibold">{newLabel}</span>
+    </div>
+    <p class="text-lg text-title font-medium leading-relaxed"><slot>{newText}</slot></p>
+  </div>
+</div>

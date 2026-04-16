@@ -2,6 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import Tagline from '../../components/Tagline.astro';
 import ServiceIcon from '../../components/ServiceIcon.astro';
+import ProcessFlow from '../../components/ProcessFlow.astro';
+import PullQuote from '../../components/PullQuote.astro';
+import ServiceNav from '../../components/ServiceNav.astro';
 ---
 
 <Layout title="Rescue & Refactor - Wellmade" description="Stuck? We unstick things. Product broken. Team gone. Technical debt strangling every new feature. We've seen it. We fix it.">
@@ -38,34 +41,17 @@ import ServiceIcon from '../../components/ServiceIcon.astro';
 
   <!-- What It Looks Like -->
   <section class="section-alt py-20 md:py-28">
-    <div class="max-w-4xl mx-auto px-6">
+    <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-3xl md:text-4xl font-bold text-title mb-12">What it looks like.</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-white p-8 rounded-2xl shadow-card">
-          <h3 class="text-xl font-bold text-primary mb-3">Assessment.</h3>
-          <p class="text-body">We dig in. Codebase, infrastructure, architecture, processes. We find out what's broken, what's fragile, and what's actually fine.</p>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-card">
-          <h3 class="text-xl font-bold text-primary mb-3">Honest diagnosis.</h3>
-          <p class="text-body">Sometimes it's fixable. Sometimes it's "burn it down and start over." We'll tell you which, and why.</p>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-card">
-          <h3 class="text-xl font-bold text-primary mb-3">Stabilization.</h3>
-          <p class="text-body">Stop the bleeding. Fix the critical bugs. Shore up security. Get things running reliably again.</p>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-card">
-          <h3 class="text-xl font-bold text-primary mb-3">Refactoring.</h3>
-          <p class="text-body">Untangle the mess. Pay down technical debt. Make the codebase something a team can actually work with.</p>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-card">
-          <h3 class="text-xl font-bold text-primary mb-3">Knowledge recovery.</h3>
-          <p class="text-body">The original team left? We document what we find. We rebuild the tribal knowledge that walked out the door.</p>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-card">
-          <h3 class="text-xl font-bold text-primary mb-3">Handover or continue.</h3>
-          <p class="text-body">We can hand it back to your team, help you hire, or stick around to keep building.</p>
-        </div>
-      </div>
+      <ProcessFlow
+        steps={[
+          { title: 'Assess', description: 'Codebase, infra, architecture. What\'s broken, what\'s fragile, what\'s fine.' },
+          { title: 'Diagnose', description: 'Fixable, or burn-it-down? We tell you which, and why.' },
+          { title: 'Stabilize', description: 'Stop the bleeding. Critical bugs, security, reliability.' },
+          { title: 'Refactor', description: 'Pay down debt. Make the code something a team can work with.' },
+          { title: 'Hand over', description: 'Back to your team, help you hire, or stay and keep building.' },
+        ]}
+      />
     </div>
   </section>
 
@@ -141,9 +127,8 @@ import ServiceIcon from '../../components/ServiceIcon.astro';
       <p class="text-lg md:text-xl text-body leading-relaxed mb-6">
         Sometimes the answer is: don't rescue it. Start fresh.
       </p>
-      <p class="text-lg md:text-xl text-title font-medium">
-        We'll tell you if that's the case. We'd rather lose an engagement than waste your money on a lost cause.
-      </p>
+
+      <PullQuote>We'd rather lose an engagement than waste your money on a lost cause.</PullQuote>
     </div>
   </section>
 
@@ -176,5 +161,6 @@ import ServiceIcon from '../../components/ServiceIcon.astro';
     </div>
   </section>
 
+  <ServiceNav current="/services/rescue-refactor" />
   <Tagline />
 </Layout>

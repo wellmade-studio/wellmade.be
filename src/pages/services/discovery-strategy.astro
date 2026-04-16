@@ -2,6 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import Tagline from '../../components/Tagline.astro';
 import ServiceIcon from '../../components/ServiceIcon.astro';
+import ProcessFlow from '../../components/ProcessFlow.astro';
+import PullQuote from '../../components/PullQuote.astro';
+import ServiceNav from '../../components/ServiceNav.astro';
 ---
 
 <Layout title="Discovery & Strategy - Wellmade" description="Not sure what to build? Let's find out. By building, not by writing documents nobody reads.">
@@ -30,38 +33,24 @@ import ServiceIcon from '../../components/ServiceIcon.astro';
       <p class="text-lg md:text-xl text-body leading-relaxed mb-6">
         Wrong assumptions. Wrong priorities. A beautifully detailed spec for something nobody actually wants.
       </p>
-      <p class="text-lg md:text-xl text-title font-medium">
-        Discovery isn't a phase you skip to save money. It's how you avoid wasting money on the wrong thing.
-      </p>
+      <PullQuote>Discovery isn't a phase you skip to save money. It's how you avoid wasting money on the wrong thing.</PullQuote>
     </div>
   </section>
 
   <!-- What It Looks Like -->
   <section class="section-alt py-20 md:py-28">
-    <div class="max-w-4xl mx-auto px-6">
+    <div class="max-w-6xl mx-auto px-6">
       <h2 class="text-3xl md:text-4xl font-bold text-title mb-12">What it looks like.</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-white p-8 rounded-2xl shadow-card">
-          <h3 class="text-xl font-bold text-primary mb-3">Understanding the real problem.</h3>
-          <p class="text-body">Not what stakeholders think users want. What users actually need. We dig, we question, we challenge assumptions.</p>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-card">
-          <h3 class="text-xl font-bold text-primary mb-3">Talking to real people.</h3>
-          <p class="text-body">We want access to actual users. Not proxies. Not personas. Real humans with real problems.</p>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-card">
-          <h3 class="text-xl font-bold text-primary mb-3">Prototyping fast.</h3>
-          <p class="text-body">Ideas are cheap. Working prototypes reveal what slides can't. We build rough, we learn fast, we refine.</p>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-card">
-          <h3 class="text-xl font-bold text-primary mb-3">Testing assumptions.</h3>
-          <p class="text-body">Before you invest in building the full thing, we test the risky parts. Technical feasibility. User interest. Business model.</p>
-        </div>
-        <div class="bg-white p-8 rounded-2xl shadow-card md:col-span-2">
-          <h3 class="text-xl font-bold text-primary mb-3">Aligning on what to build.</h3>
-          <p class="text-body">Not a 100-page document. A shared understanding. Clear priorities. A path forward.</p>
-        </div>
-      </div>
+      <ProcessFlow
+        loop={true}
+        steps={[
+          { title: 'Understand', description: 'The real problem, not what stakeholders assume users want.' },
+          { title: 'Talk', description: 'To actual users. Not proxies. Not personas. Real humans.' },
+          { title: 'Prototype', description: 'Build rough, learn fast. Working prototypes beat slides.' },
+          { title: 'Test', description: 'The risky parts — feasibility, interest, business model.' },
+          { title: 'Align', description: 'Shared understanding. Clear priorities. A path forward.' },
+        ]}
+      />
     </div>
   </section>
 
@@ -175,5 +164,6 @@ import ServiceIcon from '../../components/ServiceIcon.astro';
     </div>
   </section>
 
+  <ServiceNav current="/services/discovery-strategy" />
   <Tagline />
 </Layout>

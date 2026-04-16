@@ -1,0 +1,96 @@
+---
+interface Step {
+  title: string;
+  description?: string;
+}
+
+interface Props {
+  steps: Step[];
+  loop?: boolean;
+  class?: string;
+}
+
+const { steps, loop = false, class: className = '' } = Astro.props;
+---
+
+<div class:list={['relative', className]}>
+  {/* Visual graphic — loop or timeline */}
+  {loop ? (
+    <div class="flex justify-center mb-12">
+      <div class="relative w-64 h-64 md:w-80 md:h-80">
+        {/* Circle track */}
+        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#E8E9F3" stroke-width="3" />
+          {/* Arrow indicating direction */}
+          <path d="M100 20 l-5 8 l10 0 Z" fill="#47446B" />
+        </svg>
+        {/* Step labels around the circle */}
+        {steps.map((step, i) => {
+          const angle = (i / steps.length) * 2 * Math.PI - Math.PI / 2;
+          const r = 50;
+          const cx = 50 + Math.cos(angle) * r;
+          const cy = 50 + Math.sin(angle) * r;
+          return (
+            <div
+              class="absolute flex flex-col items-center"
+              style={`left: ${cx}%; top: ${cy}%; transform: translate(-50%, -50%);`}
+            >
+              <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm md:text-base shadow-card">
+                {i + 1}
+              </div>
+              <span class="mt-1 text-xs md:text-sm font-semibold text-title whitespace-nowrap">{step.title}</span>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  ) : (
+    <div class="relative mb-12">
+      {/* Timeline bar */}
+      <div class="hidden md:block absolute top-5 left-0 right-0 h-0.5 bg-light" aria-hidden="true">
+        <div class="absolute inset-y-0 left-0 bg-primary/30" style={`width: 100%`} />
+      </div>
+      {/* Step dots */}
+      <div class="hidden md:flex justify-between relative">
+        {steps.map((step, i) => (
+          <div class="flex flex-col items-center" style={`width: ${100 / steps.length}%`}>
+            <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-card z-10">
+              {i + 1}
+            </div>
+            <span class="mt-3 text-sm font-semibold text-title text-center">{step.title}</span>
+          </div>
+        ))}
+      </div>
+      {/* Mobile: vertical line */}
+      <div class="md:hidden flex flex-col gap-4">
+        {steps.map((step, i) => (
+          <div class="flex items-center gap-4">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-card">
+              {i + 1}
+            </div>
+            <span class="text-sm font-semibold text-title">{step.title}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {/* Description cards below */}
+  <div class:list={[
+    'grid gap-4 md:gap-6',
+    steps.length === 3 && 'md:grid-cols-3',
+    steps.length === 4 && 'md:grid-cols-4',
+    steps.length === 5 && 'md:grid-cols-5',
+    steps.length >= 6 && 'md:grid-cols-3',
+  ]}>
+    {steps.map((step, i) => (
+      <div class="bg-white rounded-2xl shadow-card p-5 md:p-6">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">{i + 1}</span>
+          <h3 class="font-bold text-title text-base">{step.title}</h3>
+        </div>
+        {step.description && <p class="text-body text-sm leading-relaxed">{step.description}</p>}
+      </div>
+    ))}
+  </div>
+</div>

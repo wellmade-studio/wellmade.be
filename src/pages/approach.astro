@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Tagline from '../components/Tagline.astro';
+import PullQuote from '../components/PullQuote.astro';
+import ProcessFlow from '../components/ProcessFlow.astro';
+import OldNewContrast from '../components/OldNewContrast.astro';
 ---
 
 <Layout title="How We Work - Wellmade" description="We've lived technology's evolution, not just studied it. We build to learn, ship, observe, and refine.">
@@ -38,42 +41,52 @@ import Tagline from '../components/Tagline.astro';
 
   <!-- Built to Evolve -->
   <section class="section-alt py-20 md:py-28">
-    <div class="max-w-3xl mx-auto px-6">
-      <h2 class="text-3xl md:text-4xl font-bold text-title mb-8">Built to evolve.</h2>
-      <p class="text-lg md:text-xl text-body leading-relaxed mb-6">
-        We don't build to spec. We build to learn.
-      </p>
-      <p class="text-xl md:text-2xl text-primary font-bold mb-6">
-        Ship, observe, refine. Repeat.
-      </p>
-      <p class="text-lg md:text-xl text-body leading-relaxed mb-6">
-        The first version is never the last. That's not a flaw - that's the plan.
-      </p>
-      <p class="text-lg md:text-xl text-body leading-relaxed mb-6">
-        We design architectures that expect change. We write code that can pivot. We deploy infrastructure that scales or shrinks in minutes.
-      </p>
-      <p class="text-lg md:text-xl text-title font-medium">
-        Fail fast. Fail cheap. Learn always.
-      </p>
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl md:text-4xl font-bold text-title mb-8">Built to evolve.</h2>
+        <p class="text-lg md:text-xl text-body leading-relaxed mb-10">
+          We don't build to spec. We build to learn.
+        </p>
+      </div>
+
+      <ProcessFlow
+        loop={true}
+        steps={[
+          { title: 'Ship', description: 'Get it in front of real users, fast. Working software beats perfect plans.' },
+          { title: 'Observe', description: 'Watch what actually happens. Data, feedback, behavior — not opinions.' },
+          { title: 'Refine', description: 'Adjust based on evidence. Sometimes pivot, sometimes double down.' },
+        ]}
+        class="my-12"
+      />
+
+      <div class="max-w-3xl">
+        <p class="text-lg md:text-xl text-body leading-relaxed mb-6">
+          The first version is never the last. That's not a flaw — that's the plan.
+        </p>
+        <p class="text-lg md:text-xl text-body leading-relaxed mb-6">
+          We design architectures that expect change. We write code that can pivot. We deploy infrastructure that scales or shrinks in minutes.
+        </p>
+
+        <PullQuote>Fail fast. Fail cheap. Learn always.</PullQuote>
+      </div>
     </div>
   </section>
 
   <!-- No Throwaway Work -->
   <section class="section-light py-20 md:py-28">
-    <div class="max-w-3xl mx-auto px-6">
+    <div class="max-w-4xl mx-auto px-6">
       <h2 class="text-3xl md:text-4xl font-bold text-title mb-8">No throwaway work.</h2>
+
+      <OldNewContrast
+        oldText='Build a prototype, show it, throw it away, rebuild "for real."'
+        newText="The prototype IS production."
+      />
+
       <p class="text-lg md:text-xl text-body leading-relaxed mb-6">
-        The old way: build a prototype, show it, throw it away, rebuild "for real."
+        With modern infrastructure-as-code, cloud-native deployment, and AI-assisted development, we ship real products from day one. Validation environments, scalable architecture, proper foundations — in minutes, not months.
       </p>
-      <p class="text-lg md:text-xl text-primary font-bold mb-6">
-        Our way: the prototype <em>is</em> production.
-      </p>
-      <p class="text-lg md:text-xl text-body leading-relaxed mb-6">
-        With modern infrastructure-as-code, cloud-native deployment, and AI-assisted development, we ship real products from day one. Validation environments, scalable architecture, proper foundations - in minutes, not months.
-      </p>
-      <p class="text-lg md:text-xl text-title font-medium">
-        Your MVP isn't a demo. It's the first version of your product.
-      </p>
+
+      <PullQuote accent={true}>Your MVP isn't a demo. It's the first version of your product.</PullQuote>
     </div>
   </section>
 
