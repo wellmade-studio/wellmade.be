@@ -6,7 +6,13 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), tailwind(), sitemap()],
+  integrations: [
+    react(),
+    tailwind(),
+    sitemap({
+      filter: (page) => !page.includes('/signatures'),
+    }),
+  ],
   output: 'static',
   site: 'https://wellmade.be',
   vite: {
