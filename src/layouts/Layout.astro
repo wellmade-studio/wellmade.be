@@ -5,9 +5,26 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
 
-const { title = 'Wellmade - Products that work. Teams that deliver.', description = 'We build products that matter. Production-ready from day one. Built to evolve.' } = Astro.props;
+const {
+  title = 'Wellmade - Products that work. Teams that deliver.',
+  description = 'We build products that matter. Production-ready from day one. Built to evolve.',
+  image = '/brand/Wellmade-color.png',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
+const imageURL = new URL(image, Astro.site).href;
+
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Wellmade',
+  url: 'https://wellmade.be',
+  logo: 'https://wellmade.be/brand/Wellmade-color.png',
+  description: 'We build products that matter. Production-ready from day one. Built to evolve.',
+};
 ---
 
 <!doctype html>
@@ -20,11 +37,28 @@ const { title = 'Wellmade - Products that work. Teams that deliver.', descriptio
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Wellmade" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={imageURL} />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageURL} />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Josefin+Sans:wght@100;300;400;500;600;700&display=swap" rel="stylesheet" />
 
-    <script defer src="https://cloud.umami.is/script.js" data-website-id="5658f619-1144-4e24-ba6c-50de61246d8a"></script>
+    <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="5658f619-1144-4e24-ba6c-50de61246d8a"></script>
   </head>
   <body class="min-h-screen bg-white text-body antialiased font-sans text-lg">
     <Header />
